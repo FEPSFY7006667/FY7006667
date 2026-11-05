@@ -5,9 +5,6 @@
 <head>
 
 <title>Thermodynamics Behind F1 Engines</title>
- <h2>
-How are thermodynamic principles used in F1 engines to optimise speed?
-</h2>
 
 <style>
 
@@ -17,16 +14,12 @@ background-color:#f5f5f5;
 margin:0;
 }
 
-/* Main title section */
-
 .titlebox{
 background:#E10600;
 color:white;
 text-align:center;
 padding:25px;
 }
-
-/* Table of Contents */
 
 .contents{
 
@@ -78,48 +71,41 @@ display:block;
 
 }
 
-/* Stat cards */
-
-.stats{
-
+.engineButtons{
 text-align:center;
-
-margin-top:30px;
-
+margin:20px;
 }
 
-.card{
-
-display:inline-block;
-
-width:180px;
-
-margin:10px;
-
-padding:20px;
-
-color:white;
-
-border-radius:15px;
-
-font-weight:bold;
-
-}
-
-.red{
+.engineButtons button{
 background:#E10600;
+color:white;
+padding:15px 25px;
+margin:10px;
+border:none;
+border-radius:8px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
 }
 
-.blue{
-background:#1E90FF;
+.engineButtons button:hover{
+background:#B30000;
 }
 
-.green{
-background:#2ECC71;
+#description{
+width:80%;
+margin:auto;
+margin-top:20px;
+background:white;
+color:black;
+padding:20px;
+border:3px solid #E10600;
+border-radius:10px;
+min-height:120px;
 }
 
-.orange{
-background:#F39C12;
+section{
+padding:20px;
 }
 
 </style>
@@ -176,7 +162,7 @@ Abstract
 <tr>
 <td>
 <a href="#introduction">
- Introduction
+Introduction
 </a>
 </td>
 </tr>
@@ -200,7 +186,7 @@ First Law of Thermodynamics
 <tr>
 <td>
 <a href="#secondlaw">
- Second Law of Thermodynamics
+Second Law of Thermodynamics
 </a>
 </td>
 </tr>
@@ -216,7 +202,7 @@ Energy Recovery Systems
 <tr>
 <td>
 <a href="#conclusion">
-✅ Conclusion
+Conclusion
 </a>
 </td>
 </tr>
@@ -231,111 +217,191 @@ References
 
 </table>
 
-<br>
-
-<div class="stats">
-
-<div class="card red">
-50%+<br>
-Thermal Efficiency
-</div>
-
-<div class="card blue">
-1.6L<br>
-Turbo Hybrid V6
-</div>
-
-<div class="card green">
-350kW<br>
-MGU-K (2026)
-</div>
-
-<div class="card orange">
-100kg/h<br>
-Fuel Flow Limit
-</div>
-
-</div>
-
 <hr>
 
-<h2 id="abstract">
-Abstract
-</h2>
+<section id="abstract">
+
+<h2>Abstract</h2>
 
 <p>
 Paste your abstract here.
 </p>
 
+</section>
+
 <hr>
 
-<h2 id="introduction">
-Introduction
-</h2>
+<section id="introduction">
+
+<h2>Introduction</h2>
 
 <p>
 Paste your introduction here.
 </p>
 
+</section>
+
 <hr>
 
-<h2 id="engine">
+<section id="engine">
+
+<h2 align="center">
 Explore the F1 Power Unit
 </h2>
 
-<p>
-Keep your showInfo() section here.
+<p align="center">
+Click on a component below to learn about it.
 </p>
+
+<div class="engineButtons">
+
+<button onclick="showInfo('ice')">
+ICE
+</button>
+
+<button onclick="showInfo('turbo')">
+Turbocharger
+</button>
+
+<button onclick="showInfo('mguh')">
+MGU-H
+</button>
+
+<button onclick="showInfo('mguk')">
+MGU-K
+</button>
+
+<button onclick="showInfo('battery')">
+Energy Store
+</button>
+
+</div>
+
+<div id="description">
+
+Click a component above to learn about it.
+
+</div>
+
+</section>
 
 <hr>
 
-<h2 id="firstlaw">
-🔥 First Law of Thermodynamics
+<section id="firstlaw">
+
+<h2>
+First Law of Thermodynamics
 </h2>
 
 <p>
-Paste section here.
+Paste this section here.
 </p>
+
+</section>
 
 <hr>
 
-<h2 id="secondlaw">
-🌡️ Second Law of Thermodynamics
+<section id="secondlaw">
+
+<h2>
+Second Law of Thermodynamics
 </h2>
 
 <p>
-Paste section here.
+Paste this section here.
 </p>
+
+</section>
 
 <hr>
 
-<h2 id="ers">
+<section id="ers">
+
+<h2>
 Energy Recovery Systems
 </h2>
 
 <p>
-Paste section here.
+Paste this section here.
 </p>
+
+</section>
 
 <hr>
 
-<h2 id="conclusion">
- Conclusion
+<section id="conclusion">
+
+<h2>
+Conclusion
 </h2>
 
 <p>
-Paste conclusion here.
+Paste your conclusion here.
 </p>
+
+</section>
 
 <hr>
 
-<h2 id="references">
+<section id="references">
+
+<h2>
 References
 </h2>
 
 <p>
-Paste references here.
+Paste your references here.
 </p>
+
+</section>
+
+<script>
+
+function showInfo(part){
+
+if(part=="ice"){
+
+document.getElementById("description").innerHTML =
+
+"<h3>Internal Combustion Engine (ICE)</h3><p>Paste your ICE explanation here.</p>";
+
+}
+
+else if(part=="turbo"){
+
+document.getElementById("description").innerHTML =
+
+"<h3>Turbocharger</h3><p>Paste your Turbocharger explanation here.</p>";
+
+}
+
+else if(part=="mguh"){
+
+document.getElementById("description").innerHTML =
+
+"<h3>Motor Generator Unit - Heat (MGU-H)</h3><p>Paste your MGU-H explanation here.</p>";
+
+}
+
+else if(part=="mguk"){
+
+document.getElementById("description").innerHTML =
+
+"<h3>Motor Generator Unit - Kinetic (MGU-K)</h3><p>Paste your MGU-K explanation here.</p>";
+
+}
+
+else if(part=="battery"){
+
+document.getElementById("description").innerHTML =
+
+"<h3>Energy Store</h3><p>Paste your Energy Store explanation here.</p>";
+
+}
+
+}
+
+</script>
 
 </body>
 
