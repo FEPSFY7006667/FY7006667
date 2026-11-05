@@ -671,6 +671,36 @@ async function verifyLastUpdatedTime() {
 window.onload = getLastUpdatedTime;
 
 </script>
+  <h2>Word Count</h2>
+
+<p>
+Word Count:
+<span id="wordCount">0</span>
+</p>
+<script>
+
+function countWords() {
+
+let text =
+document.getElementById("article").innerText;
+
+let words =
+text.trim().split(/\s+/);
+
+document.getElementById("wordCount").innerText =
+words.length;
+
+}
+
+window.onload = function() {
+
+countWords();
+
+getLastUpdatedTime();
+
+};
+
+</script>
 </body>
 
 </html>
