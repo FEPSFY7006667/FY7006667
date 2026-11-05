@@ -217,44 +217,29 @@ function showInfo(part){
 
 if(part=="ice"){
 document.getElementById("description").innerHTML=
-"🔥 Internal Combustion Engine: Converts chemical energy from fuel into mechanical work.";
+" Internal Combustion Engine: Fuel is burned inside cylinders, creating high pressure gases that push pistons up and down. This causes crankshaft movement, resulting in rear wheel rotation. ";
 }
 
-if(part=="turbo"){
+if(part=="turbocharger"){
 document.getElementById("description").innerHTML=
-"🌀 Turbocharger: Uses exhaust gas energy to compress incoming air and increase power.";
+" Turbocharger: This consists of two turbines connected by a shaft. One is rotated by hot gases leaving the engine and the other compresses incoming air. Compressed air has more oxygen allowing greater combustion and power. ";
 }
 
 if(part=="mguh"){
 document.getElementById("description").innerHTML=
-"⚡ MGU-H: Recovers energy from exhaust gases through the turbocharger.";
+" Motor Generator Unit- Heat  (MGU-H): This is connected to the turbocharger shaft, and its purpose is to recover energy from hot exhaust gases. It does this by converting turbine rotation into electricity or acting as a motor to keep the turbo spinning. (Zhao, 2025)";
 }
 
 if(part=="mguk"){
 document.getElementById("description").innerHTML=
-"⚡ MGU-K: Recovers braking energy and converts it into electrical energy.";
+" Motor Generator Unit- Kinetic (MGU-K): When breaks are applied, the rear wheels continue rotating and MGU-K acts as a generator converting kinetic energy into electrical energy to store. During acceleration, stored energy is sent into MGU-K, which acts as a motor and delivers power to the drivetrain (group of mechanical components that transmits power from an engine to the wheels. (Union of Concerned Scientists, 2015)";
 }
 
 if(part=="battery"){
 document.getElementById("description").innerHTML=
-"🔋 Energy Store: Stores recovered electrical energy for later use during acceleration.";
+"Energy Store: This stores electrical energy recovered from MGU-K during breaking and MGU-H from exhaust heat. The battery releases energy when extra power is required such as, overtaking and accelerating out of corners.";
 }
 
-}
-
-function correct(){
-
-document.getElementById("answer").innerHTML=
-"✅ Correct! The MGU-K recovers braking energy.";
-
-}
-
-function wrong(){
-
-document.getElementById("answer").innerHTML=
-"❌ Not quite. Exhaust heat is mainly recovered by the MGU-H.";
-
-}
 
 </script>
 
