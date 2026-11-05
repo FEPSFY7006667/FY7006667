@@ -1,60 +1,4 @@
 <!DOCTYPE html>
-<html>
-  <head>
-  </head>
-   <img src="WebBanner2026.png" alt="Banner" width="1200" height="300">
-  <body>
-     <h1><b>ENG0018 Computer Laboratory 2026/27</b></h1>
-     <h2>Student URN: 7006667</h2>  
-    <h2 align="center">Table of Contents</h2>
-
-<table border="1" width="60%" align="center">
-
-<tr bgcolor="#E10600">
-<th><font color="white">Section</font></th>
-</tr>
-
-<tr>
-<td><a href="#abstract"> Abstract</a></td>
-</tr>
-
-<tr>
-<td><a href="#introduction">Introduction</a></td>
-</tr>
-
-<tr>
-<td><a href="#engine">⚙️ F1 Power Unit</a></td>
-</tr>
-
-<tr>
-<td><a href="#firstlaw">First Law of Thermodynamics</a></td>
-</tr>
-
-<tr>
-<td><a href="#secondlaw">Second Law of Thermodynamics</a></td>
-</tr>
-
-<tr>
-<td><a href="#kers">KERS</a></td>
-</tr>
-
-<tr>
-<td><a href="#ers">Energy Recovery Systems</a></td>
-</tr>
-
-<tr>
-<td><a href="#prechamber"> Pre-Chamber Jet Combustion</a></td>
-</tr>
-
-<tr>
-<td><a href="#conclusion"> Conclusion</a></td>
-</tr>
-
-<tr>
-<td><a href="#references">References</a></td>
-</tr>
-
-</table>
 
 <html>
 
@@ -70,98 +14,109 @@ background-color:#f5f5f5;
 margin:0;
 }
 
-.hero{
-background-color:#E10600;
-color:white;
-padding:50px;
-text-align:center;
-}
+/* Main title section */
 
-.nav{
-background:black;
-padding:15px;
-text-align:center;
-}
-
-.nav a{
-color:white;
-text-decoration:none;
-padding:15px;
-font-weight:bold;
-}
-
-.nav a:hover{
+.titlebox{
 background:#E10600;
+color:white;
+text-align:center;
+padding:25px;
 }
+
+/* Table of Contents */
+
+.contents{
+
+width:70%;
+
+margin:auto;
+
+border-collapse:collapse;
+
+background:white;
+
+}
+
+.contents th{
+
+background:#E10600;
+
+color:white;
+
+padding:15px;
+
+}
+
+.contents td{
+
+padding:12px;
+
+border:1px solid #cccccc;
+
+}
+
+.contents tr:hover{
+
+background:#FFD700;
+
+cursor:pointer;
+
+}
+
+.contents a{
+
+text-decoration:none;
+
+color:black;
+
+font-weight:bold;
+
+display:block;
+
+}
+
+/* Stat cards */
 
 .stats{
-display:flex;
-justify-content:center;
-gap:20px;
-margin:30px;
-flex-wrap:wrap;
+
+text-align:center;
+
+margin-top:30px;
+
 }
 
 .card{
-background:white;
+
+display:inline-block;
+
 width:180px;
-padding:20px;
-text-align:center;
-border-radius:15px;
-box-shadow:0px 0px 10px grey;
-cursor:pointer;
-transition:0.3s;
-}
 
-.card:hover{
-transform:scale(1.1);
-background:#FFD700;
-}
-
-.factbox{
-margin:30px auto;
-width:80%;
-background:white;
-padding:20px;
-border-left:8px solid #E10600;
-font-size:18px;
-}
-
-.engineButtons{
-text-align:center;
-margin:30px;
-}
-
-.engineButtons button{
-padding:15px;
 margin:10px;
-font-size:16px;
-background:#E10600;
+
+padding:20px;
+
 color:white;
-border:none;
-border-radius:10px;
-cursor:pointer;
-}
 
-.engineButtons button:hover{
-background:black;
-}
-
-#description{
-width:70%;
-margin:auto;
-background:white;
-padding:20px;
 border-radius:15px;
-box-shadow:0px 0px 10px grey;
+
+font-weight:bold;
+
 }
 
-.quiz{
-margin:40px auto;
-width:80%;
-background:white;
-padding:20px;
-border-radius:15px;
+.red{
+background:#E10600;
+}
+
+.blue{
+background:#1E90FF;
+}
+
+.green{
+background:#2ECC71;
+}
+
+.orange{
+background:#F39C12;
 }
 
 </style>
@@ -170,96 +125,214 @@ border-radius:15px;
 
 <body>
 
-<div class="hero">
+<img src="WebBanner2026.png"
+alt="Banner"
+width="1200"
+height="300">
 
-<h1>Thermodynamics Behind F1 Engines</h1>
+<h1 align="center">
+<b>ENG0018 Computer Laboratory 2026/27</b>
+</h1>
 
-<h2>How are thermodynamic principles used in F1 engines to optimise speed? </h2>
-
-<p>
-Explore the science behind thermal efficiency,
-turbocharging and energy recovery systems.
-</p>
-
-</div>
-
-<div class="nav">
-
-<a href="#abstract">Abstract</a>
-<a href="#engine">Power Unit</a>
-<a href="#quiz">Quiz</a>
-<a href="#references">References</a>
-
-</div>
-
-
-<h2 id="engine" align="center">
-
-Explore the F1 Power Unit
-
+<h2 align="center">
+Student URN: 7006667
 </h2>
 
-<div class="engineButtons">
+<div class="titlebox">
 
-<button onclick="showInfo('ice')">
-ICE
-</button>
+<h1>
+Thermodynamics Behind F1 Engines
+</h1>
 
-<button onclick="showInfo('turbo')">
-Turbocharger
-</button>
-
-<button onclick="showInfo('mguh')">
-MGU-H
-</button>
-
-<button onclick="showInfo('mguk')">
-MGU-K
-</button>
-
-<button onclick="showInfo('battery')">
-Energy Store
-</button>
+<h2>
+How are thermodynamic principles used in F1 engines to optimise speed?
+</h2>
 
 </div>
 
-<div id="description">
+<br>
 
-Click a component above to learn about it.
+<h2 align="center">
+Table of Contents
+</h2>
+
+<table class="contents">
+
+<tr>
+<th>Section</th>
+</tr>
+
+<tr>
+<td>
+<a href="#abstract">
+Abstract
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#introduction">
+ Introduction
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#engine">
+Explore the F1 Power Unit
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#firstlaw">
+First Law of Thermodynamics
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#secondlaw">
+ Second Law of Thermodynamics
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#ers">
+Energy Recovery Systems
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#conclusion">
+✅ Conclusion
+</a>
+</td>
+</tr>
+
+<tr>
+<td>
+<a href="#references">
+References
+</a>
+</td>
+</tr>
+
+</table>
+
+<br>
+
+<div class="stats">
+
+<div class="card red">
+50%+<br>
+Thermal Efficiency
+</div>
+
+<div class="card blue">
+1.6L<br>
+Turbo Hybrid V6
+</div>
+
+<div class="card green">
+350kW<br>
+MGU-K (2026)
+</div>
+
+<div class="card orange">
+100kg/h<br>
+Fuel Flow Limit
+</div>
 
 </div>
 
-<script>
+<hr>
 
-function showInfo(part){
+<h2 id="abstract">
+Abstract
+</h2>
 
-if(part=="ice"){
-document.getElementById("description").innerHTML=
-" Internal Combustion Engine: Fuel is burned inside cylinders, creating high pressure gases that push pistons up and down. This causes crankshaft movement, resulting in rear wheel rotation. ";
-}
+<p>
+Paste your abstract here.
+</p>
 
-if(part=="turbocharger"){
-document.getElementById("description").innerHTML=
-" Turbocharger: This consists of two turbines connected by a shaft. One is rotated by hot gases leaving the engine and the other compresses incoming air. Compressed air has more oxygen allowing greater combustion and power. ";
-}
+<hr>
 
-if(part=="mguh"){
-document.getElementById("description").innerHTML=
-" Motor Generator Unit- Heat  (MGU-H): This is connected to the turbocharger shaft, and its purpose is to recover energy from hot exhaust gases. It does this by converting turbine rotation into electricity or acting as a motor to keep the turbo spinning. (Zhao, 2025)";
-}
+<h2 id="introduction">
+Introduction
+</h2>
 
-if(part=="mguk"){
-document.getElementById("description").innerHTML=
-" Motor Generator Unit- Kinetic (MGU-K): When breaks are applied, the rear wheels continue rotating and MGU-K acts as a generator converting kinetic energy into electrical energy to store. During acceleration, stored energy is sent into MGU-K, which acts as a motor and delivers power to the drivetrain (group of mechanical components that transmits power from an engine to the wheels. (Union of Concerned Scientists, 2015)";
-}
+<p>
+Paste your introduction here.
+</p>
 
-if(part=="battery"){
-document.getElementById("description").innerHTML=
-"Energy Store: This stores electrical energy recovered from MGU-K during breaking and MGU-H from exhaust heat. The battery releases energy when extra power is required such as, overtaking and accelerating out of corners.";
-}
+<hr>
 
+<h2 id="engine">
+Explore the F1 Power Unit
+</h2>
 
-</script>
+<p>
+Keep your showInfo() section here.
+</p>
+
+<hr>
+
+<h2 id="firstlaw">
+🔥 First Law of Thermodynamics
+</h2>
+
+<p>
+Paste section here.
+</p>
+
+<hr>
+
+<h2 id="secondlaw">
+🌡️ Second Law of Thermodynamics
+</h2>
+
+<p>
+Paste section here.
+</p>
+
+<hr>
+
+<h2 id="ers">
+Energy Recovery Systems
+</h2>
+
+<p>
+Paste section here.
+</p>
+
+<hr>
+
+<h2 id="conclusion">
+ Conclusion
+</h2>
+
+<p>
+Paste conclusion here.
+</p>
+
+<hr>
+
+<h2 id="references">
+References
+</h2>
+
+<p>
+Paste references here.
+</p>
 
 </body>
 
