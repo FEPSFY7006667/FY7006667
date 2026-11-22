@@ -1,17 +1,25 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Thermodynamics Behind F1 Engines</title>
 
 <style>
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 font-family:Calibri,Arial,sans-serif;
-background-color:#f5f5f5;
+background:#F5F0E6;
 margin:0;
+color:#222;
+overflow-x:hidden;
 }
 
 .titlebox{
@@ -22,185 +30,180 @@ padding:25px;
 }
 
 .contents{
-
 width:70%;
-
 margin:auto;
-
 border-collapse:collapse;
-
 background:white;
-
 }
 
 .contents th{
-
 background:#E10600;
-
 color:white;
-
 padding:15px;
-
 }
 
 .contents td{
-
 padding:12px;
-
 border:1px solid #cccccc;
-
 }
 
 .contents tr:hover{
-
 background:#FFD700;
-
 cursor:pointer;
-
 }
 
 .contents a{
-
 text-decoration:none;
-
 color:black;
-
 font-weight:bold;
-
 display:block;
+}
 
+.track-container{
+position:relative;
+width:100%;
+height:3000px;
+background:#F5F0E6;
+}
+
+.track{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+width:800px;
+height:2800px;
+}
+
+.track-path{
+fill:none;
+stroke:#555;
+stroke-width:90;
+stroke-linecap:round;
+stroke-linejoin:round;
+}
+
+.track-line{
+fill:none;
+stroke:white;
+stroke-width:4;
+stroke-dasharray:20 20;
+}
+
+#car{
+position:fixed;
+width:80px;
+z-index:1000;
+pointer-events:none;
+transition:0.1s;
+}
+
+.infoBox{
+position:absolute;
+width:450px;
+background:white;
+padding:20px;
+border-left:8px solid #E10600;
+border-radius:10px;
+box-shadow:0 0 15px rgba(0,0,0,0.2);
+opacity:0;
+transform:scale(.9);
+transition:.6s;
+}
+
+.infoBox.show{
+opacity:1;
+transform:scale(1);
+}
+
+/* BOX POSITIONS */
+
+#abstract{
+top:100px;
+left:80px;
+}
+
+#introduction{
+top:500px;
+right:80px;
+}
+
+#engine{
+top:900px;
+left:80px;
+}
+
+#firstlaw{
+top:1400px;
+right:80px;
+}
+
+#secondlaw{
+top:1850px;
+left:80px;
+}
+
+#ers{
+top:2250px;
+right:80px;
+}
+
+#conclusion{
+top:2600px;
+left:80px;
+}
+
+#references{
+top:3050px;
+right:80px;
 }
 
 .engineButtons{
 text-align:center;
-margin:20px;
+margin-top:15px;
 }
 
 .engineButtons button{
 background:#E10600;
 color:white;
-padding:15px 25px;
-margin:10px;
+padding:12px 18px;
+margin:5px;
 border:none;
 border-radius:8px;
-font-size:16px;
-font-weight:bold;
 cursor:pointer;
+font-weight:bold;
 }
 
 .engineButtons button:hover{
-background:#B30000;
+background:#b30000;
 }
 
 #description{
-width:80%;
-margin:auto;
-margin-top:20px;
+margin-top:15px;
+padding:15px;
 background:white;
-color:black;
-padding:20px;
-border:3px solid #E10600;
-border-radius:10px;
+border:2px solid #E10600;
+border-radius:8px;
 min-height:120px;
 }
 
-section{
-padding:20px;
-}
-
-  /* Formula One Starting Lights */
-
-.lights{
-
+#last-updated{
 text-align:center;
-
-margin-top:30px;
-
-}
-
-.light{
-
-display:inline-block;
-
-width:50px;
-
-height:50px;
-
-margin:10px;
-
-border-radius:50%;
-
-background:#8B0000;
-
-animation:flash 5s infinite;
-
-}
-
-/* Lights turn on one after another */
-
-.light:nth-child(1){
-animation-delay:0s;
-}
-
-.light:nth-child(2){
-animation-delay:0.5s;
-}
-
-.light:nth-child(3){
-animation-delay:1s;
-}
-
-.light:nth-child(4){
-animation-delay:1.5s;
-}
-
-.light:nth-child(5){
-animation-delay:2s;
-}
-
-/* Red light animation */
-
-@keyframes flash{
-
-0%,100%{
-background:#8B0000;
-box-shadow:none;
-}
-
-50%{
-background:red;
-box-shadow:0 0 25px red;
-}
-
-}
-
-#raceMessage{
-
-font-size:22px;
-
+padding:15px;
+margin-top:50px;
 font-weight:bold;
-
-color:#E10600;
-
-animation:pulse 2s infinite;
-
 }
 
-@keyframes pulse{
-
-0%{
-opacity:0.5;
+.verifyButton{
+display:block;
+margin:10px auto;
+padding:8px 16px;
 }
 
-50%{
-opacity:1;
+.wordCountBox{
+text-align:center;
+padding:30px;
 }
 
-100%{
-opacity:0.5;
-}
-
-}
 </style>
 
 </head>
@@ -231,21 +234,6 @@ How are thermodynamic principles used in Formula One engines to optimise speed?
 </h2>
 
 </div>
-</div>
-
-<div class="lights">
-
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-<div class="light"></div>
-
-</div>
-
-<p id="raceMessage" align="center">
-Lights Out and Away We Go!
-</p>
 
 <h2 align="center">
 Table of Contents
@@ -258,105 +246,103 @@ Table of Contents
 </tr>
 
 <tr>
-<td>
-<a href="#abstract">
-Abstract
-</a>
-</td>
+<td><a href="#abstract">Abstract</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#introduction">
-Introduction
-</a>
-</td>
+<td><a href="#introduction">Introduction</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#engine">
-Explore the F1 Power Unit
-</a>
-</td>
+<td><a href="#engine">Explore the F1 Power Unit</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#firstlaw">
-First Law of Thermodynamics
-</a>
-</td>
+<td><a href="#firstlaw">First Law of Thermodynamics</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#secondlaw">
-Second Law of Thermodynamics
-</a>
-</td>
+<td><a href="#secondlaw">Second Law of Thermodynamics</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#ers">
-Energy Recovery Systems
-</a>
-</td>
+<td><a href="#ers">Energy Recovery Systems</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#conclusion">
-Conclusion
-</a>
-</td>
+<td><a href="#conclusion">Conclusion</a></td>
 </tr>
 
 <tr>
-<td>
-<a href="#references">
-References
-</a>
-</td>
+<td><a href="#references">References</a></td>
 </tr>
 
 </table>
 
-<hr>
+<br><br>
 
-<section id="abstract">
+<img src="f1car.png" id="car">
+
+<div class="track-container">
+
+<svg class="track" viewBox="0 0 800 2800">
+
+<path id="raceTrack"
+
+d="
+M400 100
+C650 100 650 450 400 450
+C150 450 150 800 400 800
+C650 800 650 1150 400 1150
+C150 1150 150 1500 400 1500
+C650 1500 650 1850 400 1850
+C150 1850 150 2200 400 2200
+C650 2200 650 2550 400 2550"
+
+class="track-path"/>
+
+<path
+
+d="
+M400 100
+C650 100 650 450 400 450
+C150 450 150 800 400 800
+C650 800 650 1150 400 1150
+C150 1150 150 1500 400 1500
+C650 1500 650 1850 400 1850
+C150 1850 150 2200 400 2200
+C650 2200 650 2550 400 2550"
+
+class="track-line"/>
+
+</svg>
+
+<div class="infoBox" id="abstract">
 
 <h2>Abstract</h2>
 
 <p>
-This essay explores how thermodynamic principles are utilised in Formula One power units to enhance vehicle speed. FIA regulations prohibit teams from increasing vehicle performance from just burning more fuel as fuel flow was restricted to 100kg/h. Therefore, engineers must maximise the conversion of chemical energy to useful mechanical work. The first law of thermodynamics presents the engine as a system that converts energy, while the second law of thermodynamics explains why waste heat is unavoidable and encourages heat recovery. This essay examines how high compression ratios, lean combustion, pre-chamber jet ignition, MGU-H and MGU-K energy recovery systems increase thermal efficiency. It considers 2026 regulations, which remove the MGU-H, increase MGU-K power to 350kW and require sustainable fuel usage. These technologies utilise thermodynamic principles to achieve thermal efficiency, resulting in greater acceleration, straight-line speed and faster lap times from the same amount of fuel. (Global.honda, 2015)
+PASTE YOUR ABSTRACT HERE
 </p>
 
-</section>
+</div>
 
-<hr>
-
-<section id="introduction">
+<div class="infoBox" id="introduction">
 
 <h2>Introduction</h2>
 
 <p>
-According to (Devriendt, 2021), Thermodynamics is the study of the movement of heat in macroscopic objects and is imperative when considering how to enhance speed in F1 vehicles. Formula One cars can achieve high speeds due to high thermal efficiency of the power units, meaning a limited quantity of fuel energy gets converted into useful mechanical work whilst limiting waste heat. To be environmentally conscious, a maximum fuel flow was set in 2014, prompting engineers to enhance thermal efficiency. F1 engines achieve thermal efficiency by applying laws of thermodynamics, optimising combustion, recovering waste heat and managing heat transfer. (Menon, 2026)
+PASTE YOUR INTRODUCTION HERE
 </p>
 
-</section>
+</div>
 
-<hr>
+<div class="infoBox" id="engine">
 
-<section id="engine">
+<h2>Explore the F1 Power Unit</h2>
 
-<h2 align="center">
-Explore the F1 Power Unit
-</h2>
-
-<p align="center">
-Click on a component below to learn about it.
+<p>
+Click a component below to reveal information.
 </p>
 
 <div class="engineButtons">
@@ -385,322 +371,263 @@ Energy Store
 
 <div id="description">
 
-Click a component above to learn about it.
+Click a component above to reveal information.
 
 </div>
 
-</section>
+</div>
 
-<hr>
+<div class="infoBox" id="firstlaw">
 
-<section id="firstlaw">
-
-<h2>
-First Law of Thermodynamics
-</h2>
+<h2>First Law of Thermodynamics</h2>
 
 <p>
-Paste this section here.
+PASTE YOUR FIRST LAW SECTION HERE
 </p>
 
-</section>
+</div>
 
-<hr>
+<div class="infoBox" id="secondlaw">
 
-<section id="secondlaw">
-
-<h2>
-Second Law of Thermodynamics
-</h2>
+<h2>Second Law of Thermodynamics</h2>
 
 <p>
-Paste this section here.
+PASTE YOUR SECOND LAW SECTION HERE
 </p>
 
-</section>
+</div>
 
-<hr>
+<div class="infoBox" id="ers">
 
-<section id="ers">
-
-<h2>
-Energy Recovery Systems
-</h2>
+<h2>Energy Recovery Systems</h2>
 
 <p>
-Paste this section here.
+PASTE YOUR ERS SECTION HERE
 </p>
 
-</section>
+</div>
 
-<hr>
+<div class="infoBox" id="conclusion">
 
-<section id="conclusion">
-
-<h2>
-Conclusion
-</h2>
+<h2>Conclusion</h2>
 
 <p>
-Paste your conclusion here.
+PASTE YOUR CONCLUSION HERE
 </p>
 
-</section>
+</div>
 
-<hr>
+<div class="infoBox" id="references">
 
-<section id="references">
-
+<h2>References</h2>
 
 <p>
-<h2 id="references">References</h2>
-
-<ol>
-
-<li>
-Devriendt, J. (2021). <i>Basics of thermodynamics</i>.
-<a href="https://www.physics.ox.ac.uk/system/files/file_attachments/basic_thermo.pdf" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Formula 1 car energy recovery system diagram. (n.d.). [Diagram]
-<i>New Emerging Automobile Technologies</i>.
-<a href="https://gr8autotech.wordpress.com/wp-content/uploads/2013/06/f1-kers.jpg" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Global.honda. (2015a).
-<i>Evolution of hybrid technologies (MGU-H, MGU-K)</i>.
-<a href="https://global.honda/en/tech/motorsports/Formula-1/Powertrain_MGU-H_MGU-K/" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Global.honda. (2015b).
-<i>Evolution of technologies boasting the ultimate combustion efficiency</i>.
-<a href="https://global.honda/en/tech/motorsports/Formula-1/Powertrain_Combustion_Efficiency/" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Menon, K. (2026).
-<i>Why F1 engines have better thermal efficiency than regular car engines</i>.
-<a href="https://www.jalopnik.com/2147096/f1-vs-car-engines-thermal-efficiency/" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Propulsion and Energy Lab - Purdue University. (n.d.).
-<i>Prechamber jet ignition for internal combustion engines</i>.
-<a href="https://engineering.purdue.edu/PEL/research/ignition" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-SAE Media Group. (2016).
-<i>Pushing the ICE forward, gradually</i>.
-<a href="https://www.mobilityengineeringtech.com/component/content/article/51557-pushing-the-ice-forward-gradually" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Stepien, Z. (2025).
-<i>The pro-ecological evolution of powertrains and fuels in Formula 1</i>.
-Energies, 18(22), pp.6013.
-</li>
-
-<li>
-Thinka. (2026).
-<i>Second law, engines and reversed heat engines</i>.
-<a href="https://www.thinka.ai/en-US/AQA-A-Level/Physics-7408/Second-law-engines-and-reversed-heat-engines" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Union of Concerned Scientists. (2015).
-<i>Series vs parallel vs series/parallel drivetrains</i>.
-<a href="https://www.ucs.org/resources/all-about-drivetrains" target="_blank">
-View Source
-</a>
-</li>
-
-<li>
-Zhao, Z. (2025).
-<i>Enhancements of thermal efficiency for F1 race</i>.
-<a href="https://ieeexplore.ieee.org/document/10853329" target="_blank">
-View Source
-</a>
-</li>
-
-</ol>
+PASTE YOUR REFERENCES HERE
 </p>
 
-</section>
+</div>
+
+</div>
+
+<div id="last-updated">
+Loading last update time...
+</div>
+
+<!-- Verify Button -->
+<button onclick="verifyLastUpdatedTime()"
+style="display:block;
+margin:10px auto;
+padding:8px 16px;">
+
+Verify Last Modified Time
+
+</button>
+
+<div class="wordCountBox">
+
+<h2>Word Count</h2>
+
+<p>
+<span id="wordCount">0</span>
+</p>
+
+</div>
 
 <script>
+
+/* Car Animation */
+
+const track =
+document.getElementById("raceTrack");
+
+const car =
+document.getElementById("car");
+
+const trackLength =
+track.getTotalLength();
+
+window.addEventListener("scroll",()=>{
+
+const maxScroll =
+document.body.scrollHeight -
+window.innerHeight;
+
+const progress =
+window.scrollY/maxScroll;
+
+const point =
+track.getPointAtLength(
+trackLength*progress
+);
+
+car.style.left =
+(point.x + window.innerWidth/2 - 400)
++ "px";
+
+car.style.top =
+(point.y - 40)
++ "px";
+
+document
+.querySelectorAll(".infoBox")
+.forEach(box=>{
+
+const rect =
+box.getBoundingClientRect();
+
+if(rect.top <
+window.innerHeight*0.85){
+
+box.classList.add("show");
+
+}
+
+});
+
+});
+
+/* Power Unit Click to Reveal */
 
 function showInfo(part){
 
 if(part=="ice"){
 
-document.getElementById("description").innerHTML =
-
-"<h3>Internal Combustion Engine (ICE)</h3><p>Fuel is burned inside cylinders, creating high pressure gases that push pistons up and down. This causes crankshaft movement, resulting in rear wheel rotation.</p>";
+document.getElementById("description").innerHTML=
+"<h3>Internal Combustion Engine (ICE)</h3><p>Fuel burns inside the cylinders generating pressure that drives pistons and turns the crankshaft.</p>";
 
 }
 
 else if(part=="turbo"){
 
-document.getElementById("description").innerHTML =
-
-"<h3>Turbocharger</h3><p>This consists of two turbines connected by a shaft. One is rotated by hot gases leaving the engine and the other compresses incoming air. Compressed air has more oxygen allowing greater combustion and power.</p>";
+document.getElementById("description").innerHTML=
+"<h3>Turbocharger</h3><p>Uses exhaust gases to compress incoming air, allowing more fuel to burn and increasing power output.</p>";
 
 }
 
 else if(part=="mguh"){
 
-document.getElementById("description").innerHTML =
-
-"<h3>Motor Generator Unit - Heat (MGU-H)</h3><p>This is connected to the turbocharger shaft, and its purpose is to recover energy from hot exhaust gases. It does this by converting turbine rotation into electricity or acting as a motor to keep the turbo spinning. (Zhao, 2025)</p>";
+document.getElementById("description").innerHTML=
+"<h3>MGU-H</h3><p>Recovers energy from exhaust gases by converting turbine rotation into electricity.</p>";
 
 }
 
 else if(part=="mguk"){
 
-document.getElementById("description").innerHTML =
-
-"<h3>Motor Generator Unit - Kinetic (MGU-K)</h3><p>When breaks are applied, the rear wheels continue rotating and MGU-K acts as a generator converting kinetic energy into electrical energy to store. During acceleration, stored energy is sent into MGU-K, which acts as a motor and delivers power to the drivetrain (group of mechanical components that transmits power from an engine to the wheels. (Union of Concerned Scientists, 2015)</p>";
+document.getElementById("description").innerHTML=
+"<h3>MGU-K</h3><p>Recovers kinetic energy during braking and deploys stored electrical energy during acceleration.</p>";
 
 }
 
 else if(part=="battery"){
 
-document.getElementById("description").innerHTML =
+document.getElementById("description").innerHTML=
+"<h3>Energy Store</h3><p>Stores recovered electrical energy for later deployment around the lap.</p>";
 
-"<h3>Energy Store</h3><p>This stores electrical energy recovered from MGU-K during breaking and MGU-H from exhaust heat. The battery releases energy when extra power is required such as, overtaking and accelerating out of corners.</p>";
+}
+
+}
+
+/* Timestamp */
+
+async function getLastUpdatedTime(){
+
+const username="FEPSFY7006667";
+const repo="FY7006667";
+
+const url=
+`https://api.github.com/repos/${username}/${repo}/commits`;
+
+try{
+
+const response=
+await fetch(url);
+
+const commits=
+await response.json();
+
+const lastCommitDate=
+new Date(
+commits[0].commit.committer.date
+);
+
+document.getElementById(
+"last-updated"
+).innerText =
+"Last Modified Time: "
++ lastCommitDate.toLocaleString();
+
+}
+catch{
+
+document.getElementById(
+"last-updated"
+).innerText =
+"Error fetching update time.";
 
 }
 
 }
 
-</script>
-<div id="last-updated">Loading last update time...</div>
+async function verifyLastUpdatedTime(){
 
-<!-- Verify Button -->
-<button onclick="verifyLastUpdatedTime()" style="display: block; margin: 10px auto; padding: 8px 16px;">
-    Verify Last Modified Time
-</button>
+document.getElementById(
+'last-updated'
+).innerText='Verifying...';
 
-<script>
+await getLastUpdatedTime();
 
-async function getLastUpdatedTime() {
-
-    const username = "FEPSFY7006667";
-    const repo = "FY7006667";
-
-    const url = `https://api.github.com/repos/${username}/${repo}/commits`;
-
-    try {
-
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/vnd.github.v3+json',
-            }
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error fetching data: ${response.status} - ${response.statusText}`);
-        }
-
-        const commits = await response.json();
-
-        if (commits && commits.length > 0) {
-
-            const lastCommitDate =
-                new Date(commits[0].commit.committer.date);
-
-            document.getElementById('last-updated').innerText =
-                `Last Modified Time: ${lastCommitDate.toLocaleString()}`;
-
-        }
-        else {
-
-            document.getElementById('last-updated').innerText =
-                'No commits found in the repository.';
-
-        }
-
-    }
-    catch (error) {
-
-        console.error('Error fetching the last updated time:', error);
-
-        document.getElementById('last-updated').innerText =
-            'Error fetching update time. Please check the repository details.';
-
-    }
+alert(
+'Last modified time verified from GitHub API.'
+);
 
 }
 
-// Function to verify the last update time by re-fetching it from the API
+/* Word Count */
 
-async function verifyLastUpdatedTime() {
+function countWords(){
 
-    document.getElementById('last-updated').innerText =
-        'Verifying...';
-
-    await getLastUpdatedTime();
-
-    alert('Last modified time has been successfully verified from GitHub API.');
-
-}
-
-// Initial load to display the time on page load
-
-window.onload = getLastUpdatedTime;
-
-</script>
-  <h2>Word Count</h2>
-
-<p>
-Word Count:
-<span id="wordCount">0</span>
-</p>
-<script>
-
-function countWords() {
-
-let text =
-document.getElementById("article").innerText;
+let article =
+document.body.innerText;
 
 let words =
-text.trim().split(/\s+/);
+article.trim().split(/\s+/);
 
-document.getElementById("wordCount").innerText =
+document.getElementById(
+"wordCount"
+).innerText =
 words.length;
 
 }
 
-window.onload = function() {
-
-countWords();
+window.onload=function(){
 
 getLastUpdatedTime();
+countWords();
 
 };
 
 </script>
-</body>
 
+</body>
 </html>
+
