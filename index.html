@@ -62,7 +62,7 @@ display:block;
 .track-container{
 position:relative;
 width:100%;
-height:3000px;
+height:3400px;
 background:#F5F0E6;
 }
 
@@ -91,10 +91,15 @@ stroke-dasharray:20 20;
 
 #car{
 position:fixed;
-width:80px;
+width:90px;
 z-index:1000;
 pointer-events:none;
-transition:0.1s;
+transform-origin:center center;
+filter:drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+transition:
+left 0.05s linear,
+top 0.05s linear,
+transform 0.05s linear;
 }
 
 .infoBox{
@@ -473,13 +478,61 @@ document.body.scrollHeight -
 window.innerHeight;
 
 const progress =
-window.scrollY/maxScroll;
+window.scrollY / maxScroll;
 
-const point =
+const currentPoint =
 track.getPointAtLength(
-trackLength*progress
+trackLength * progress
 );
 
+const nextPoint =
+track.getPointAtLength(
+Math.min(
+trackLength * progress + 20,
+trackLength
+)
+);
+
+const angle =
+Math.atan2(
+nextPoint.y - currentPoint.y,
+nextPoint.x - currentPoint.x
+) * 180 / Math.PI;
+
+/* Move car */
+
+car.style.left =
+(currentPoint.x +
+window.innerWidth/2 -
+445) + "px";
+
+car.style.top =
+(currentPoint.y - 28) + "px";
+
+/* Rotate car */
+
+car.style.transform =
+`rotate(${angle}deg)`;
+
+/* Reveal boxes */
+
+document
+.querySelectorAll(".infoBox")
+.forEach(box=>{
+
+const rect =
+box.getBoundingClientRect();
+
+if(rect.top <
+window.innerHeight * 0.85){
+
+box.classList.add("show");
+
+}
+
+});
+
+});
 car.style.left =
 (point.x + window.innerWidth/2 - 400)
 + "px";
@@ -554,9 +607,8 @@ async function getLastUpdatedTime(){
 const username="FEPSFY7006667";
 const repo="FY7006667";
 
-const url=
+const url =
 `https://api.github.com/repos/${username}/${repo}/commits`;
-
 try{
 
 const response=
@@ -571,11 +623,16 @@ commits[0].commit.committer.date
 );
 
 document.getElementById(
-"last-updated"
-).innerText =
-"Last Modified Time: "
-+ lastCommitDate.toLocaleString();
-
+#last-updated{
+width:500px;
+margin:40px auto 10px auto;
+padding:15px;
+background:white;
+border:3px solid #E10600;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 catch{
 
@@ -623,6 +680,10 @@ window.onload=function(){
 
 getLastUpdatedTime();
 countWords();
+
+window.dispatchEvent(
+new Event('scroll')
+);
 
 };
 
