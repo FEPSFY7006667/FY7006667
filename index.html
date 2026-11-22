@@ -110,14 +110,8 @@ padding:20px;
 border-left:8px solid #E10600;
 border-radius:10px;
 box-shadow:0 0 15px rgba(0,0,0,0.2);
-opacity:0;
-transform:scale(.9);
-transition:.6s;
-}
-
-.infoBox.show{
 opacity:1;
-transform:scale(1);
+transition:.6s;
 }
 
 /* BOX POSITIONS */
@@ -156,9 +150,8 @@ right:80px;
 top:2600px;
 left:80px;
 }
-
 #references{
-top:3050px;
+top:2850px;
 right:80px;
 }
 
@@ -192,10 +185,15 @@ min-height:120px;
 }
 
 #last-updated{
-text-align:center;
+width:500px;
+margin:40px auto 10px auto;
 padding:15px;
-margin-top:50px;
+background:white;
+border:3px solid #E10600;
+border-radius:10px;
+text-align:center;
 font-weight:bold;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
 }
 
 .verifyButton{
@@ -286,7 +284,7 @@ Table of Contents
 
 <br><br>
 
-<img src="f1car.png" id="car">
+<img src="f1car.png" id="car" alt="Formula One Car">
 
 <div class="track-container">
 
@@ -533,31 +531,7 @@ box.classList.add("show");
 });
 
 });
-car.style.left =
-(point.x + window.innerWidth/2 - 400)
-+ "px";
 
-car.style.top =
-(point.y - 40)
-+ "px";
-
-document
-.querySelectorAll(".infoBox")
-.forEach(box=>{
-
-const rect =
-box.getBoundingClientRect();
-
-if(rect.top <
-window.innerHeight*0.85){
-
-box.classList.add("show");
-
-}
-
-});
-
-});
 
 /* Power Unit Click to Reveal */
 
@@ -604,41 +578,52 @@ document.getElementById("description").innerHTML=
 
 async function getLastUpdatedTime(){
 
-const username="FEPSFY7006667";
-const repo="FY7006667";
+const username = "FEPSFY7006667";
+const repo = "FY7006667";
 
 const url =
 `https://api.github.com/repos/${username}/${repo}/commits`;
+
 try{
 
-const response=
-await fetch(url);
+const response = await fetch(url);
 
-const commits=
-await response.json();
+if(!response.ok){
+throw new Error("GitHub API Error");
+}
 
-const lastCommitDate=
+const commits = await response.json();
+
+if(commits.length > 0){
+
+const lastCommitDate =
 new Date(
 commits[0].commit.committer.date
 );
 
 document.getElementById(
-#last-updated{
-width:500px;
-margin:40px auto 10px auto;
-padding:15px;
-background:white;
-border:3px solid #E10600;
-border-radius:10px;
-text-align:center;
-font-weight:bold;
-box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-catch{
+"last-updated"
+).innerHTML =
+"<strong>Last Modified Time:</strong> "
++ lastCommitDate.toLocaleString();
+
+}else{
 
 document.getElementById(
 "last-updated"
-).innerText =
+).innerHTML =
+"No commits found.";
+
+}
+
+}
+catch(error){
+
+console.error(error);
+
+document.getElementById(
+"last-updated"
+).innerHTML =
 "Error fetching update time.";
 
 }
@@ -681,8 +666,10 @@ window.onload=function(){
 getLastUpdatedTime();
 countWords();
 
+/* position car at start */
+
 window.dispatchEvent(
-new Event('scroll')
+new Event("scroll")
 );
 
 };
