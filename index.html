@@ -91,15 +91,29 @@ stroke-dasharray:20 20;
 
 #car{
 position:fixed;
-width:60px;
+width:70px;
 z-index:1000;
 pointer-events:none;
 transform-origin:center center;
-filter:drop-shadow(0 4px 8px rgba(0,0,0,0.4));
-transition:
-left 0.05s linear,
-top 0.05s linear,
-transform 0.05s linear;
+left:0;
+top:0;
+}
+
+#car{
+background:none;
+filter:none;
+}
+  
+#car{
+position:fixed;
+width:70px;
+z-index:1000;
+pointer-events:none;
+transform-origin:center center;
+background:none;
+filter:none;
+left:0;
+top:0;
 }
 
 .infoBox{
@@ -497,23 +511,30 @@ nextPoint.y - currentPoint.y,
 nextPoint.x - currentPoint.x
 ) * 180 / Math.PI;
 
-/* Move car */
+/* Position car directly on track centre */
+
 const trackRect =
 document.querySelector(".track")
 .getBoundingClientRect();
 
-car.style.left =
-(trackRect.left + currentPoint.x - 45)
-+ "px";
+const carWidth = 70;
+const carHeight = 35;
 
-car.style.top =
-(trackRect.top + currentPoint.y - 25)
-+ "px";
-  
-/* Rotate car */
+const carX =
+trackRect.left +
+currentPoint.x -
+(carWidth / 2);
+
+const carY =
+trackRect.top +
+currentPoint.y -
+(carHeight / 2);
+
+car.style.left = carX + "px";
+car.style.top = carY + "px";
 
 car.style.transform =
-`rotate(${angle}deg)`;
+`rotate(${angle + 90}deg)`;
 
 /* Reveal boxes */
 
