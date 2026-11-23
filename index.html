@@ -91,7 +91,7 @@ stroke-dasharray:20 20;
 
 #car{
 position:fixed;
-width:90px;
+width:60px;
 z-index:1000;
 pointer-events:none;
 transform-origin:center center;
@@ -498,15 +498,18 @@ nextPoint.x - currentPoint.x
 ) * 180 / Math.PI;
 
 /* Move car */
+const trackRect =
+document.querySelector(".track")
+.getBoundingClientRect();
 
 car.style.left =
-(currentPoint.x +
-window.innerWidth/2 -
-445) + "px";
+(trackRect.left + currentPoint.x - 45)
++ "px";
 
 car.style.top =
-(currentPoint.y - 28) + "px";
-
+(trackRect.top + currentPoint.y - 25)
++ "px";
+  
 /* Rotate car */
 
 car.style.transform =
